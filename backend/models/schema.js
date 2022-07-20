@@ -8,9 +8,20 @@ exports.schema = buildSchema(`
       phone:String
 }
 
+    type Project{
+        id:ID
+        name:String
+        description:String
+        status: String
+        client:Client
+    }
+
     type Query{
         hello:String
         client(id:ID):Client
+        clients:[Client]
+        project(id:ID):Project
+        projects:[Project]
     }
 
 `);
