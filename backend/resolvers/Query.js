@@ -11,6 +11,7 @@ exports.Query = {
   clients: (parent, args, context) => {
     return Client.find();
   },
+  
   project: (parent, args, context) => {
     const { id } = args;
     return Project.findById(id);
@@ -18,10 +19,4 @@ exports.Query = {
   projects: (parent, args, context) => {
     return Project.find();
     },
-    Project: {
-        client: (parent, args, context) => {
-            const { id } = parent.clientId;
-            return Client.findById(id)
-      }
-  }
 };

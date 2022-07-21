@@ -1,27 +1,35 @@
-// import { buildSchema } from 'graphql';
-const { buildSchema,GraphQLID } = require('graphql');
-exports.schema = buildSchema(`
-    type Client{
-      id:ID
-      name:String
-      email:String
-      phone:String
-}
+const { gql } = require('apollo-server-express');
 
-    type Project{
-        id:ID
-        name:String
-        description:String
-        status: String
-        client:Client
-    }
+exports.typeDefs = gql`
+  type Client {
+    id: ID
+    name: String
+    email: String
+    phone: String
+  }
 
-    type Query{
-        hello:String
-        client(id:ID):Client
-        clients:[Client]
-        project(id:ID):Project
-        projects:[Project]
-    }
+  type Project {
+    id: ID
+    name: String
+    description: String
+    status: String
+    client(id: ID): Client
+  }
 
-`);
+  type Query {
+    client(id: ID): Client
+    clients: [Client]
+    project(id: ID): Project
+    projects: [Project]
+  }
+
+  type Mutation {
+    addClient(input: ClientInput): Client
+  }
+
+  input ClientInput {
+    name: String!
+    email: String!
+    phone: String!
+  }
+`;
