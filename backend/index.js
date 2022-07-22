@@ -6,13 +6,14 @@ const { mongoose } = require('mongoose');
 
 
 //mongoose model
-const Client = require('./models/Client');
-const Project = require('./models/Project');
+const Client_model = require('./models/Client');
+const Project_model = require('./models/Project');
 
 
 const { typeDefs } = require("./models/schema");
 const { Query } = require('./resolvers/Query');
 const { Mutation } = require('./resolvers/Mutation');
+const { Project } = require('./resolvers/Project');
 
 
 
@@ -34,10 +35,11 @@ async function startServer() {
       resolvers: {
           Query,
           Mutation,
+          Project
       },
       context: {
-          Client,
-          Project
+          Client_model,
+          Project_model
       }
   });
   await apolloServer.start();

@@ -1,36 +1,32 @@
 exports.Query = {
-    
-  client: (parent, args, { Client }) => {
+  client: (parent, args, { Client_model }) => {
     const { id } = args;
-    const client = Client.findById(id).then(client => {
+    const client = Client_model.findById(id).then((client) => {
       return client;
-    })
+    });
     return client;
   },
-  clients: (parent, args, { Client }) => {
-
-    const clients = Client.find().then((client) => {
+  clients: (parent, args, { Client_model }) => {
+    const clients = Client_model.find().then((client) => {
       return client;
     });
 
-    return clients
-  }, 
-  
-  project: (parent, args, {Project}) => {
+    return clients;
+  },
+
+  project: (parent, args, { Project_model }) => {
     const { id } = args;
-    const project = Project.findById(id).then(project => {
+    const project = Project_model.findById(id).then((project) => {
       return project;
     });
 
     return project;
   },
-  projects: (parent, args, {Project}) => {
-    const projects = Project.find().then((projects) => {
+  projects: (parent, args, { Project_model }) => {
+    const projects = Project_model.find().then((projects) => {
       return projects;
-    }
-    );
+    });
 
-  return projects;
+    return projects;
   },
-  
 };
