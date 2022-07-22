@@ -1,10 +1,6 @@
-const Client = require("./../models/Client");
-const Project = require("./../models/Project");
-
 exports.Mutation = {
-  addClient: (parent, { input }, context) => {
-    console.log(input);
-
+  addClient: (parent, { input }, { Client }) => {
+    
     const { name, email, phone } = input;
 
     const client = new Client({
@@ -13,7 +9,20 @@ exports.Mutation = {
       phone: phone,
     });
 
-    console.log(client);
     return client.save();
   },
+
+  deleteClient: (parent, { id }, { Client }) => {
+    
+   const mssg =  Client.findByIdAndDelete(id)
+      .then(() => {
+        return "client deleted successfully";
+      })
+      .catch(err => {
+        return "Unable to delete client";
+    })
+    
+  return mssg;
+  }
+
 };

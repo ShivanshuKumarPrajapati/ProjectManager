@@ -5,9 +5,15 @@ const cors = require('cors');
 const { mongoose } = require('mongoose');
 
 
+//mongoose model
+const Client = require('./models/Client');
+const Project = require('./models/Project');
+
+
 const { typeDefs } = require("./models/schema");
 const { Query } = require('./resolvers/Query');
 const { Mutation } = require('./resolvers/Mutation');
+
 
 
 const port = process.env.PORT || 5000;
@@ -27,8 +33,12 @@ async function startServer() {
     typeDefs,
       resolvers: {
           Query,
-          Mutation
-    },
+          Mutation,
+      },
+      context: {
+          Client,
+          Project
+      }
   });
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });

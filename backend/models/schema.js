@@ -17,14 +17,15 @@ exports.typeDefs = gql`
   }
 
   type Query {
-    client(id: ID): Client
+    client(id: ID!): Client
     clients: [Client]
-    project(id: ID): Project
+    project(id: ID!): Project
     projects: [Project]
   }
 
   type Mutation {
     addClient(input: ClientInput): Client
+    deleteClient(id:ID!):String
   }
 
   input ClientInput {

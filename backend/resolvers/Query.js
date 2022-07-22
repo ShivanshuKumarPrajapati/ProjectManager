@@ -1,22 +1,36 @@
-//mongoose model
-const Client  = require('./../models/Client');
-const Project = require('./../models/Project');
-  
-    
 exports.Query = {
-  client: (parent, args, context) => {
+    
+  client: (parent, args, { Client }) => {
     const { id } = args;
-    return Client.findById(id);
+    const client = Client.findById(id).then(client => {
+      return client;
+    })
+    return client;
   },
-  clients: (parent, args, context) => {
-    return Client.find();
+  clients: (parent, args, { Client }) => {
+
+    const clients = Client.find().then((client) => {
+      return client;
+    });
+
+    return clients
+  }, 
+  
+  project: (parent, args, {Project}) => {
+    const { id } = args;
+    const project = Project.findById(id).then(project => {
+      return project;
+    });
+
+    return project;
+  },
+  projects: (parent, args, {Project}) => {
+    const projects = Project.find().then((projects) => {
+      return projects;
+    }
+    );
+
+  return projects;
   },
   
-  project: (parent, args, context) => {
-    const { id } = args;
-    return Project.findById(id);
-  },
-  projects: (parent, args, context) => {
-    return Project.find();
-    },
 };
