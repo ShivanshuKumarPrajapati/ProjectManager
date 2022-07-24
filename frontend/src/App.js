@@ -1,9 +1,10 @@
 import React from "react";
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 
 import Header from "./component/Header";
-import Client from "./component/Client";
-import AddCleint from "./component/AddClient";
+import Home from "./Pages/Home";
+import NotFound  from "./Pages/NotFound";
 
 //to handle cache data
 const cache = new InMemoryCache({
@@ -35,11 +36,15 @@ function App() {
   return (
     <React.Fragment>
       <ApolloProvider client={client}>
-      <Header/>
-      <div className="container">
-        <AddCleint/>
-          <Client />
-      </div>
+        <Router>
+          <Header/>
+             <div className="container">
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </div>
+        </Router>
     
       </ApolloProvider>
     </React.Fragment>
