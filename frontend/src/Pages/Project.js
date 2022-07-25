@@ -6,6 +6,8 @@ import { FaEnvelope,FaPhone, FaIdBadge } from 'react-icons/fa'
 
 import { GET_PROJECT } from '../Queries/projectQuery'
 import Spinner from '../component/Spinner'
+import DeleteProject from '../component/DeleteProject'
+import EditProject from '../component/EditProject';
 
 const Project = () => {
 
@@ -23,6 +25,8 @@ const Project = () => {
       <div className="container">
         <div className="row">
           <div className="mx-auto w-75 card p-5">
+            <EditProject project={data.project}/>
+            <DeleteProject projectId={data.project.id}/>
             <h1>{data.project.name}</h1>
             <p>{data.project.description}</p>
             <h5 className="mt-2">Project status:</h5>
