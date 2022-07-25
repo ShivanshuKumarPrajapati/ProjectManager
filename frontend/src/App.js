@@ -4,7 +4,8 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 
 import Header from "./component/Header";
 import Home from "./Pages/Home";
-import NotFound  from "./Pages/NotFound";
+import NotFound from "./Pages/NotFound";
+import Project from "./Pages/Project";
 
 //to handle cache data
 const cache = new InMemoryCache({
@@ -41,6 +42,7 @@ function App() {
              <div className="container">
             <Routes>
               <Route exact path='/' element={<Home />} />
+              <Route path='/projects/:id' element={<Project />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>
