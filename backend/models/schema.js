@@ -31,9 +31,9 @@ exports.typeDefs = gql`
 
   type Mutation {
     addClient(input: ClientInput): Client
-    deleteClient(id: ID!): String
+    deleteClient(id: ID!): Client
     addProject(input: ProjectInput): Project
-    deleteProject(id: ID!): String
+    deleteProject(id: ID!): Project
     updateProject(id: ID!, input: updateProjectInput): Project
   }
 
@@ -54,6 +54,5 @@ exports.typeDefs = gql`
     name: String!
     description: String!
     status: statusType!
-    clientId: ID!
   }
 `;

@@ -17,7 +17,7 @@ const { Project } = require('./resolvers/Project');
 
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 const app = express();
 const url = process.env.DB_URI;
 
@@ -43,7 +43,7 @@ async function startServer() {
       }
   });
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, path: "/" });
 }
 startServer();
 

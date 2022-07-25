@@ -4,6 +4,7 @@ import { useMutation} from "@apollo/client";
 
 import { DELETE_CLIENT } from '../Mutation/clientMutation';
 import { GET_CLIENTS } from '../Queries/clientQuery';
+import { GET_PROJECTS } from '../Queries/projectQuery';
 
 const ClientRow = ({ client }) => {
   
@@ -11,16 +12,16 @@ const ClientRow = ({ client }) => {
     {
       variables: { id: client.id },
       onCompleted: (data) => {
-        console.log(data);
+        console.log("Client deleted successfully");
       },
       onError: (error) => {
         console.log(error.networkError.result.errors);
       },
-      // refetchQueries: [{ query: GET_CLIENTS }]
-      update(cache, { data: { deleteClient } }){
-        const { clients } = cache.readQuery({ query: GET_CLIENTS });
-        cache.writeQuery({ query: GET_CLIENTS, data: { clients: clients.filter(client => client.id !== deleteClient.id) } });
-      }
+      refetchQueries: [{ query: GET_CLIENTS },{query: GET_PROJECTS}]
+      // update(cache, { data: { deleteClient } }){
+      //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
+      //   cache.writeQuery({ query: GET_CLIENTS, data: { clients: clients.filter(client => client.id !== deleteClient.id) } });
+      // }
   });
   
  

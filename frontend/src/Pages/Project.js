@@ -25,9 +25,11 @@ const Project = () => {
       <div className="container">
         <div className="row">
           <div className="mx-auto w-75 card p-5">
-            <EditProject project={data.project}/>
-            <DeleteProject projectId={data.project.id}/>
-            <h1>{data.project.name}</h1>
+            <div className="d-flex flex-row w-25 ms-auto justify-content-center align-items-center">
+              <EditProject project={data.project} />
+              <DeleteProject projectId={data.project.id} />
+            </div>
+            <h1 className='mt-4'>{data.project.name}</h1>
             <p>{data.project.description}</p>
             <h5 className="mt-2">Project status:</h5>
             <p>{data.project.status}</p>

@@ -13,7 +13,7 @@ const DeleteProject = ({ projectId }) => {
     const [deleteProject] = useMutation(DELETE_PROJECT, {
         variables: { id: projectId },
         onError: function (err) {
-            console.log(err)
+            console.log(err.networkError.result.errors);
         },
         onCompleted: function () {
             console.log('Project deleted successfully');
@@ -23,9 +23,9 @@ const DeleteProject = ({ projectId }) => {
     });
 
   return (
-      <div className="d-flex mb-5 ms-auto">
+      <div className="d-flex ms-auto">
           <button className="btn btn-danger m-2" onClick={deleteProject}>
-          <FaTrash className="icon" /> Delete Project
+          <FaTrash className="icon" size={'1.5em'}/>
           </button>
       </div>
   )
